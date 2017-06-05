@@ -7,7 +7,7 @@ public class Single<T> : MonoBehaviour  where T : MonoBehaviour{
 
     protected static T single;
 
-	public static T Instance
+    public static T Single
     {
         get {
             if (single == null || single.gameObject == null)
