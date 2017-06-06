@@ -3,7 +3,7 @@
 /// 优雅的单例
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class Single<T> : MonoBehaviour  where T : MonoBehaviour{
+public class Singleton<T> : MonoBehaviour  where T : MonoBehaviour{
 
     protected static T single;
 
