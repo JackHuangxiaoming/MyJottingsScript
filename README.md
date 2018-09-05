@@ -3,3 +3,6 @@
 
 
 第一次克隆到了Windows git clone `````ssssssssssssss
+git push origin master
+第二次上传 
+git push MyScript master
