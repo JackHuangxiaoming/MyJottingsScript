@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<linker>
+  <assembly fullname="CloudBase" preserve="all"/>
+  <assembly fullname="System.Xml" preserve="all"/>
+  <assembly fullname="mscorlib" preserve="all"/>
+  <assembly fullname="websocket-sharp" preserve="all"/>
+  <assembly fullname="Newtonsoft.Json" preserve="all"/>
+  <assembly fullname="System.Core" preserve="all"/>
+  <assembly fullname="Google.Protobuf" preserve="all"/>
+  <assembly fullname="ICSharpCode.SharpZipLib" preserve="all"/>
+  <assembly fullname="UnityEngine.CoreModule" preserve="all"/>
+  <assembly fullname="System" preserve="all"/>
+  <assembly fullname="Assembly-CSharp" preserve="all"/>
+  <assembly fullname="System">
+    <namespace fullname="System.Net.Configuration" preserve="all"/>
+	  <namespace fullname="System.ComponentModel" preserve="all"/>
+  </assembly>
+  <namespace fullname="ILRuntime.Runtime.Adaptors" preserve="all"/>
+  <namespace fullname="System.Runtime.CompilerServices" preserve="all"/>
+  <namespace fullname="System.Runtime" preserve="all"/>
+  <namespace fullname="System.Reflection" preserve="all"/>
+  <namespace fullname="ILRuntime.Runtime.Intepreter" preserve="all"/>
+  <namespace fullname="System.Collections.Generic" preserve="all"/>
+  <namespace fullname="System.Globalization" preserve="all"/>
+  <namespace fullname="ILRuntime.CLR.Method" preserve="all"/>
+  <namespace fullname="ILRuntime.Runtime.Stack" preserve="all"/>
+  <assembly fullname="ILRuntime.Runtime.Adaptors">
+    <type fullname="ILRuntime.Runtime.Adaptors.IAsyncStateMachineAdaptors" preserve="all"/>
+  </assembly>
+  <assembly fullname="CloudBase">
+    <type fullname="CloudBase.AuthState" preserve="all"/>
+  </assembly>
+  <assembly fullname="CloudBase">
+    <type fullname="CloudBase.Auth" preserve="all"/>
+  </assembly>
+  <assembly fullname="CloudBase">
+    <type fullname="CloudBase.CloudBaseApp" preserve="all"/>
+  </assembly>
+</linker>
