@@ -1,0 +1,40 @@
+
+    // Use this for initialization
+
+    //声明水平、垂直位移  
+    float horizontal, vertical;
+    //声明摄像机旋转的对象  
+
+    Camera c;
+
+    void Start()
+    {
+        c = GetComponent<Camera>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        ChangeFieldOfView();
+        RotateByMouse();
+       
+    }
+    private void GetMouseXY()
+    {
+        horizontal = Input.GetAxis("Mouse X");
+        vertical = Input.GetAxis("Mouse Y");
+    }
+    //缩放方法  
+  
+   
+    //自身旋转方法  
+    private void RotateByMouse()
+    {
+        if (Input.GetMouseButton(1))
+        {
+            GetMouseXY(); 
+            this.transform.Rotate(-vertical * 0.4f * 10, horizontal * 0f * 10, 0);
+            
+        }
+    }
