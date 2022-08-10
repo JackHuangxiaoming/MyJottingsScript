@@ -1,5 +1,6 @@
 # MyScript
-一个公开的 实用的  脚本库
+一些小工具
+一些随笔记录
 
 
 第一次克隆到了Windows git clone `````ssssssssssssss
