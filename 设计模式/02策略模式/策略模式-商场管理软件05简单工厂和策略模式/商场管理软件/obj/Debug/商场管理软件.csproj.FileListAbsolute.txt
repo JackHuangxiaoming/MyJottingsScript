@@ -1,0 +1,2 @@
+C:\Users\echoff\Desktop\共享\设计模式\02策略模式\策略模式-商场管理软件05简单工厂和策略模式\商场管理软件\obj\Debug\商场管理软件.exe
+C:\Users\echoff\Desktop\共享\设计模式\02策略模式\策略模式-商场管理软件05简单工厂和策略模式\商场管理软件\obj\Debug\商场管理软件.pdb
