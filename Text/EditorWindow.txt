@@ -1,0 +1,1044 @@
+学习笔记
+Unity编辑器扩展
+一，菜单项相关操作
+1.菜单项(MenuItem)
+首先在Asset目录下新建一个Editor文件夹，然后在该目录下添加一个脚本MenuTest.cs
+代码内容：
+
+//EditorGUIUtility
+//EditorGUILayout
+//GUILayout
+//AssetDatabase
+
+//EditorGUI
+//GUI
+
+//UIElements 方式
+//VisualElement root = rootVisualElement;
+//VisualElement label = new Label("Hello World!");
+//root.Add(label);
+
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class MenuTest : MonoBehaviour {
+/// <summary>
+    /// _w 单一的快捷键 W
+    /// #w shift + w
+    /// %w ctrl + w
+    /// &w alt + w
+    /// </summary>
+    [MenuItem("菜单/Test _w")]
+    public static void Test1()
+    {
+        Debug.Log("Test1-----");
+    }
+
+    [MenuItem("菜单/Test# #w")]
+    public static void Test2 ()
+    {
+        Debug.Log("Test2-----");
+    }
+
+    [MenuItem("菜单/Test% %w")]
+    public static void Test3 ()
+    {
+        Debug.Log("Test3-----");
+    }
+
+    [MenuItem("菜单/Test& &w")]
+    public static void Test4 ()
+    {
+        Debug.Log("Test4-----");
+    }
+}
+复制代码
+2.组件菜单(AddComponentMenu)
+代码内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+[AddComponentMenu("菜单组件/MenuTest")]
+public class Test1 : MonoBehaviour {
+
+
+}
+复制代码
+ 
+
+3.上下文菜单(ContextMenu)
+就是在一个物体的组件上添加上下文菜单，即点击右键出现的菜单
+就在上文的Test1中添加一个上下文菜单
+代码内容如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+[AddComponentMenu("菜单组件/MenuTest")]
+public class Test1 : MonoBehaviour {
+
+
+    [ContextMenu("ContextMenu")]
+    public void Test()
+    {
+        Debug.Log("上下文测试");
+    }
+
+}
+复制代码
+ 
+
+4.必要组件菜单(RequireComponent)
+必要组件是在添加改组件的同时添加其他的组件，而且是依赖于这个组件的，
+同样在上文的Test.cs中添加必要组件，
+代码内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+[RequireComponent(typeof(Rigidbody))]
+[AddComponentMenu("菜单组件/MenuTest")]
+public class Test1 : MonoBehaviour {
+
+    [ContextMenu("ContextMenu")]
+    public void Test()
+    {
+        Debug.Log("上下文测试");
+    }
+
+}
+复制代码
+ 
+
+二，自定义Inspector界面
+1.属性相关标识
+1)隐藏属性显示 (HideInInspector)
+2)不显示的属性(NonSerialized)
+3)关键字序列化(Serializable)
+4)序列化域(SerializeField)
+ 
+
+首先新建脚本文件，InspectorTest.cs 和脚本Type1.cs
+InspectorTest.cs:
+
+复制代码
+using System;
+using UnityEngine;
+using System.Collections;
+
+public class InspectorTest : MonoBehaviour
+{
+
+    public int number1 = 3;
+    [HideInInspector]  //单纯的隐藏属性
+    public int number2 = 3;
+   [NonSerialized]   //不但隐藏，防止变量序列化
+    public int number3 = 3;
+    [SerializeField]    //将私有变量强制显示出来
+    private int number4 = 5;
+    
+    //[Serializable]可以让自定义的类显示在视图面板
+    public Type1 mytype;
+
+}
+复制代码
+Type1.cs脚本内容:(Type1类已经被序列化了)
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using System;
+
+[Serializable]
+public class Type1
+{
+    public int val1;
+
+    public float val2;
+
+    public Color color;
+
+}
+复制代码
+ 
+
+2.自定义界面属性
+这里会用到2个类 Editor 和CustomEditor
+Editor是自定义面板的基类
+CustomEditor是对应标识的组件脚本
+
+案例1：自定义一个属性面板
+1）首先在Scripts文件夹下新建一个脚本文本OwnerUITest.cs
+脚本内容为：
+
+复制代码
+using System;
+using UnityEngine;
+using System.Collections;
+
+public class OwerUITest : MonoBehaviour
+{
+
+    public int IntVal;
+
+    public float FlatVal;
+
+    public string StrVal;
+
+    public Type3 mType = new Type3();
+
+
+}
+
+[Serializable]
+public class Type3
+{
+    public int mInt;
+
+    public int mInt2;
+}
+复制代码
+2)在Editor文件下新建脚本OwnerUIInspector.cs 这个类要继承Editor类，而且要在类的前面声明：[CustomEditor(typeof(OwerUITest))] 关联刚才新建的脚本
+脚本的内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+[CustomEditor(typeof(OwerUITest))]
+public class OwnerUIInspector : Editor
+{
+
+    public SerializedObject mObj;
+
+    public SerializedProperty mInt;
+
+    public SerializedProperty mFloat;
+
+    public SerializedProperty mStr;
+
+    public SerializedProperty mtype;
+    /// <summary>
+    /// 选择当前的游戏对象时执行
+    /// </summary>
+    public void OnEnable()
+    {
+        Debug.Log("OnEnable()------");
+        this.mObj = new SerializedObject(target);
+        this.mInt = this.mObj.FindProperty("IntVal");
+        this.mFloat = this.mObj.FindProperty("FlatVal");
+        this.mStr = this.mObj.FindProperty("StrVal");
+        this.mtype = this.mObj.FindProperty("mType");
+    }
+
+
+
+    /// <summary>
+    /// 绘制
+    /// </summary>
+    public override void OnInspectorGUI()
+    {
+        Debug.Log("OnInspectorGUI()------");
+        this.mObj.Update();
+
+        EditorGUILayout.PropertyField(this.mInt);
+        EditorGUILayout.PropertyField(this.mFloat);
+        EditorGUILayout.PropertyField(this.mStr);
+        //true,表示显示出类的子节点
+        EditorGUILayout.PropertyField(this.mtype, true);
+
+    }
+}
+复制代码
+ 
+
+1）首先在Scripts文件夹中新建一个脚本组件InspectorZiDingYi.cs，脚本代码如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+
+public class InspectorZiDingYi : MonoBehaviour
+{
+
+    public MyEnum mEnum;
+
+    public int mInt;
+
+    public float FlatVal;
+
+    public string StrVal;
+
+    public Color mColor;
+}
+
+
+public enum MyEnum
+{
+    None,
+    IntVal,
+    FloatVal,
+    StrVal,
+    CocolVal
+}
+复制代码
+2)然后在Editor文件下新建一个类InspectorZiDingYIEditor 继承Editor,然后与InspectorZiDingYi组件关联，脚本代码如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+[CustomEditor(typeof(InspectorZiDingYi))]
+public class InspectorZiDingYIEditor : Editor
+{
+
+    public SerializedObject mObject;
+
+    public SerializedProperty mEnum;
+
+    public SerializedProperty mInt;
+
+    public SerializedProperty mFloat;
+
+    public SerializedProperty mStr;
+
+    public SerializedProperty mColor;
+
+    public void OnEnable()
+    {
+        this.mObject = new SerializedObject(target);
+        this.mEnum = this.mObject.FindProperty("mEnum");
+        this.mInt = this.mObject.FindProperty("mInt");
+        this.mFloat = this.mObject.FindProperty("FlatVal");
+        this.mStr = this.mObject.FindProperty("StrVal");
+        this.mColor = this.mObject.FindProperty("mColor");
+    }
+    public override void OnInspectorGUI()
+    {
+        this.mObject.Update();
+
+        EditorGUILayout.PropertyField(this.mEnum);
+
+        switch (this.mEnum.enumValueIndex)
+        {
+            case 1:
+                EditorGUILayout.PropertyField(this.mInt);
+                break;
+            case 2:
+                EditorGUILayout.PropertyField(this.mFloat);
+                break;
+            case 3:
+                EditorGUILayout.PropertyField(this.mStr);
+                break;
+            case 4:
+                EditorGUILayout.PropertyField(this.mColor);
+                break;
+        }
+        
+        this.mObject.ApplyModifiedProperties();
+
+    }
+}
+复制代码
+ 
+
+3.自定义窗口
+-----------------------------界面的启动和关闭--------------------------
+创建自定义窗口需要继承 基类：EditorWindow
+
+案例1：点击菜单项，弹出一个窗口
+1)首先在Editor文件夹中创建一个脚本MyTestWindow.cs，脚本内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class MyTestWindow : EditorWindow 
+{
+    [MenuItem("菜单/显示窗口")]
+    public static void showWindow()
+    {
+       MyTestWindow.CreateInstance<MyTestWindow>().Show();
+    }
+}
+复制代码
+ 
+
+若修改显示方式：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class MyTestWindow : EditorWindow 
+{
+    [MenuItem("菜单/显示窗口")]
+    public static void showWindow()
+    {
+       MyTestWindow.CreateInstance<MyTestWindow>().ShowUtility();
+    }
+}
+复制代码
+ 
+
+再换一种其他的显示方式：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class MyTestWindow : EditorWindow 
+{
+    [MenuItem("菜单/显示窗口")]
+    public static void showWindow()
+    {
+        MyTestWindow.CreateInstance<MyTestWindow>().ShowPopup();
+    }
+}
+复制代码
+ 
+
+这样显示的面板是一个空的面板，无法关闭，我们再这个面板上增加一个关闭按钮：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class MyTestWindow : EditorWindow 
+{
+    [MenuItem("菜单/显示窗口")]
+    public static void showWindow()
+    {
+        MyTestWindow.CreateInstance<MyTestWindow>().ShowPopup();
+    }
+    public void OnGUI ()
+    {
+        if (GUILayout.Button("关闭"))
+        {
+            this.Close();
+        }
+    }
+}
+复制代码
+ 
+
+-----------------------------界面的相关事件机制------------------------
+
+复制代码
+界面的相关事件机制总共有9个：
+1.public void OnGUI() ->绘制窗口
+2.public void Update() ->刷新方法，100次/秒
+3.public void OnInspectorUpdate() ->刷新方法，比Update（）少
+4.public void OnSelectionChange() ->选择一个对象
+5.public void OnDestroy ->销毁窗口
+6.public void OnFocus() ->获得焦点
+7.public void OnLostFocus() ->失去焦点
+8.public void OnHierarchayChange() ->Hierarchay视图窗口文件发生改变
+9.public void OnProjectChange() ->Project视图窗口文件发生改变
+复制代码
+案例测试：
+首先在Editor文件夹系新建脚本文件：MyWindow2，同样首先继承EditorWindow类，然后实现上述的9个事件机制函数,脚本内容如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class MyWindow2 : EditorWindow
+{
+
+    [MenuItem("菜单/窗口2")]
+    public static void showWindwo()
+    {
+        //利用单例只可以打开一个窗口
+        EditorWindow.GetWindow<MyWindow2>().Show();
+    }
+
+    /// <summary>
+    /// 绘制操作面板
+    /// </summary>
+    public void OnGUI()
+    {
+        if(GUILayout.Button("关闭"))
+        {
+            this.Close();
+        }
+    }
+
+    public int index_update = 0;
+
+    public int index_OnInspectorUpdate = 0;
+
+    /// <summary>
+    /// 刷新，每秒100次
+    /// </summary>
+    public void Update()
+    {
+        index_update ++;
+    }
+
+    /// <summary>
+    /// 刷新方法，比Update少
+    /// </summary>
+    public void OnInspectorUpdate()
+    {
+        index_OnInspectorUpdate ++;
+    }
+    /// <summary>
+    /// 视图被删除
+    /// </summary>
+    public void OnDestroy()
+    {
+        Debug.Log("视图被删除");
+    }
+
+    /// <summary>
+    /// 选择对象发生改变
+    /// </summary>
+    public void OnSelectionChange()
+    {
+
+        //打印出场景里选择的对象
+        for (int i = 0; i < Selection.gameObjects.Length; i++)
+        {
+            Debug.Log("选择一个场景内对象：" + Selection.gameObjects[i].name);
+        }
+
+        //打开所有选择的对象
+        for (int i = 0; i < Selection.objects.Length; i++)
+        {
+            Debug.Log("选择一个对象：" + Selection.objects[i].name);
+        }
+    }
+
+    public void OnFocus()
+    {
+        Debug.Log("OnFocus");
+    }
+
+    public void OnLostFocus()
+    {
+        Debug.Log("OnLostFocus");
+    }
+
+    /// <summary>
+    /// HirearchyChange更改
+    /// </summary>
+    public void OnHierarchyChange()
+    {
+    
+        Debug.Log("OnHierarchyChange");
+       
+    }
+
+    /// <summary>
+    /// Project 更改
+    /// </summary>
+    public void OnProjectChange()
+    {
+        Debug.Log("OnProjectChange");
+    }
+
+}
+复制代码
+ 
+
+-----------------------------文本颜色字段------------------------
+输入框：
+
+EditorGUILayout.TextField（string）　文本输入框
+EditorGUILayout.TextArea(string);　可换行的文本输入框
+EditorGUILayout.PasswordField(string); 文本输入框
+EditorGUILayout.ColorField(Color); 颜色输入框
+1）首先在Editor文件夹下新建脚本TextColorwindow.cs,文件内容如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class TextColorwindow : EditorWindow
+{
+    [MenuItem("菜单/文本颜色窗口")]
+    public  static void showWindow()
+    {
+        EditorWindow.GetWindow<TextColorwindow>().Show();
+    }
+    public string mText = "please input a string";
+    public Color mColor = Color.black;
+    public void OnGUI()
+    {
+        this.mText = EditorGUILayout.TextField(this.mText);
+        this.mText = EditorGUILayout.TextArea(this.mText);
+        this.mText = EditorGUILayout.PasswordField(this.mText);
+        this.mColor = EditorGUILayout.ColorField(this.mColor);
+    }
+}
+复制代码
+ 
+
+-----------------------------标签字段------------------------
+
+标签：
+EditorGUILayout.LabelField（string） 文本标签
+EditorGUILayout.SelectableLabel(string); 选择标签
+EditorGUILayout.Space(); 空一行
+ 
+
+1）首先在Editor文件中新建脚本LabelWindow.cs 文件内容如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class LabelWindow : EditorWindow
+{
+
+
+    public string mText = "please input a string";
+
+    public Color mColor = Color.black;
+
+    [MenuItem("菜单/标签窗口")]
+    public static void showWindwo()
+    {
+        EditorWindow.GetWindow<LabelWindow>().Show();
+    }
+
+
+    public void OnGUI()
+    {
+        //文本标签
+        EditorGUILayout.LabelField("输入文本");
+        this.mText = EditorGUILayout.TextField(this.mText);
+        //空一行
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("输入文本");
+        this.mText = EditorGUILayout.TextArea(this.mText);
+        //选择标签
+        EditorGUILayout.SelectableLabel("输入密码");
+
+        this.mText = EditorGUILayout.PasswordField(this.mText);
+        EditorGUILayout.LabelField("选择颜色");
+        this.mColor = EditorGUILayout.ColorField(this.mColor);
+    }
+}
+复制代码
+ 
+
+-----------------------------数字输入框------------------------
+
+数字输入
+EditorGUILayout.IntField(this.mIntVal); 整数输入
+EditorGUILayout.FloatField(this.mFloatVal); 浮点数输入
+ 
+
+1）首先在Editor文件夹中加入脚本Numberwindow.cs，文件内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class Numberwindow : EditorWindow 
+{
+
+    [MenuItem("菜单/数字输入窗口")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<Numberwindow>().Show();
+    }
+
+    public int mIntVal;
+
+    public float mFloatVal;
+
+
+    public void OnGUI()
+    {
+        EditorGUILayout.LabelField("输入整数");
+        this.mIntVal = EditorGUILayout.IntField(this.mIntVal);
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("输入浮点数");
+        this.mFloatVal = EditorGUILayout.FloatField(this.mFloatVal);
+    }
+}
+复制代码
+ 
+
+-----------------------------滚动条------------------------
+
+EditorGUILayout.Slider(...) 浮点数滚动条
+EditorGUILayout.IntSlider（...）整数滚动条
+EditorGUILayout.MinMaxSlider(...)
+ 
+
+1)首先在Editor文件夹下新建一个脚本ScrollWindow.cs，脚本内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class ScrollWindow : EditorWindow
+{
+
+    [MenuItem("菜单/滚动条窗口")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<ScrollWindow>().Show();
+    }
+
+    public float mFloat;
+
+    public int mIntVal;
+
+    public float mMinVal;
+    public float mMaxVal;
+    
+
+    public void OnGUI()
+    {
+
+        this.mFloat = EditorGUILayout.Slider(this.mFloat, 0, 100);
+
+        this.mIntVal = EditorGUILayout.IntSlider(this.mIntVal, 0, 100);
+
+        EditorGUILayout.Space();
+
+
+        this.mMinVal = EditorGUILayout.Slider(this.mMinVal, 0, 100);
+
+        this.mMaxVal = EditorGUILayout.Slider(this.mMaxVal, 0, 100);
+
+        EditorGUILayout.MinMaxSlider(ref this.mMinVal, ref this.mMaxVal, 0 , 100);
+    }
+复制代码
+-----------------------------位置大小输入字段------------------------
+
+位置字段:
+EditorGUILayout.Vector2Field(string, Vector2) 二维坐标
+EditorGUILayout.Vector3Field(string,Vector3); 三维坐标
+EditorGuILayout.Vector4Field(string,Vector4);四维坐标
+EditorGUILayout.RectFiled(Rect); 矩阵
+EditorGUILayout.BoundsFiled()；距离
+ 
+
+1)首先在Editor文件夹下新建脚本PositionWindow.cs ，脚本内容如下：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class PositionWindow : EditorWindow
+{
+
+    public Vector2 mPos2;
+
+    public Vector3 mPos3;
+
+    public Vector4 mPos4;
+
+    public Rect mRect;
+
+    public Bounds mBounds;
+
+
+    [MenuItem("菜单/位置输入窗口")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<PositionWindow>().Show();
+    }
+
+    public void OnGUI()
+    {
+
+        this.mPos2 = EditorGUILayout.Vector2Field("二维坐标",this.mPos2);
+
+        this.mPos3 = EditorGUILayout.Vector3Field("三维坐标", this.mPos3);
+
+        this.mPos4 = EditorGUILayout.Vector4Field("四维坐标", this.mPos4);
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.LabelField("矩阵");
+        this.mRect = EditorGUILayout.RectField(this.mRect);
+        
+        EditorGUILayout.Space();
+
+        EditorGUILayout.LabelField("距离");
+        this.mBounds = EditorGUILayout.BoundsField(this.mBounds);
+    }
+}
+复制代码
+ 
+
+-----------------------------选择字段------------------------
+
+选择字段：
+EditorGUILayout.Popup(int, string[]); 字符串选择,返回字符串数组下标
+EditorGUILayout.IntPopup(int,int[],string[]) 字符串选择，返回字符串对应下标的整形数组值
+EditorGUILayout.EnumPopup(Enum) 枚举选择，返回枚举
+1）首先在Editor文件夹下新建文件SelectWindow.cs ，脚本内容为：
+
+ 
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class SelectWindow : EditorWindow 
+{
+
+    public  int index;
+    public EnumTest mEnum;
+
+    [MenuItem("菜单/选择字段测试窗口")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<SelectWindow>().Show();
+    }
+    public void OnGUI()
+    {
+        string[] strs = new[]
+        {
+            "数组下标0",
+            "数组下标1",
+            "数组下标2",
+        };
+
+        int[] intArr = new[]
+        {
+            1,
+            2,
+            3,
+        };
+        //字符选择，返回选择的字符数组下标
+        this.index = EditorGUILayout.Popup(this.index, strs);
+        //字符选择，返回对应的整数数组的整数值
+        this.index = EditorGUILayout.IntPopup(this.index, strs,intArr);
+        Debug.Log("index:" + index);
+        //枚举选择
+        this.mEnum = (EnumTest)EditorGUILayout.EnumPopup(this.mEnum);
+    }
+}
+public enum EnumTest
+{
+    Int1,
+    Str2,
+    Float3,
+    Color4
+}
+复制代码
+ 
+
+-----------------------------标签、层、对象选择字段------------------------
+
+1）首先在Editor文件夹下新建一个脚本TagLayer.cs,脚本的内容为：
+
+复制代码
+using System;
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class TagLayer : EditorWindow 
+{
+
+    [MenuItem("菜单/标签、层、对象选择")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<TagLayer>().Show();
+    }
+
+    public String mTag;
+
+    public int mLayer;
+
+    public UnityEngine.Object mObject;
+
+    public void OnGUI()
+    {
+        mTag = EditorGUILayout.TagField(this.mTag);
+
+        mLayer = EditorGUILayout.LayerField(this.mLayer);
+
+        mObject = EditorGUILayout.ObjectField(this.mObject, typeof(Camera));
+    }
+}
+复制代码
+ 
+
+-----------------------------单选选择字段-----------------
+1）首先在Editor文件夹下新建ToggleWindow.cs脚本文件,脚本内容：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class ToggleWindow : EditorWindow 
+{
+
+    [MenuItem("菜单/单选字段选择")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<ToggleWindow>().Show();
+    }
+
+    public bool mIsSelect;
+    public void OnGUI()
+    {
+
+        this.mIsSelect = EditorGUILayout.Toggle("选择", this.mIsSelect);
+        this.mIsSelect = EditorGUILayout.Foldout(this.mIsSelect, "折叠");
+        if(this.mIsSelect)
+        {
+            EditorGUILayout.LabelField("you and me");
+            EditorGUILayout.LabelField("you and me");
+            EditorGUILayout.LabelField("you and me");
+            EditorGUILayout.LabelField("you and me");
+            EditorGUILayout.LabelField("you and me");
+        }
+    }
+}
+复制代码
+ 
+
+-----------------------------字段分组-----------------
+
+1）首先在Editor文件夹下新建脚本文件GroupWindow,脚本内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class GroupWindow : EditorWindow
+{
+
+    [MenuItem("菜单/字段分组")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<GroupWindow>().Show();
+
+    }
+
+
+    
+
+
+    public void OnGUI()
+    {
+        //滚动分组----Begin
+        this.mPos = EditorGUILayout.BeginScrollView(this.mPos);
+        Debug.Log("滚动分组测试位置：" + this.mPos);
+
+        //Toggle分组----Begin
+        this.mSelect = EditorGUILayout.BeginToggleGroup("选择分组",this.mSelect);
+
+        EditorGUILayout.LabelField("1");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("2");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("3");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("4");
+        EditorGUILayout.TextField("sdk");
+
+        EditorGUILayout.EndToggleGroup();
+        //Toggle分组-----End
+
+        EditorGUILayout.Space();
+
+        //水平分组----Begin
+        Rect rect1 = EditorGUILayout.BeginHorizontal();
+
+        EditorGUILayout.LabelField("5");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("6");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("7");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("8");
+        EditorGUILayout.TextField("sdk");
+        Debug.Log( "水平分组测试数据：" + rect1);
+
+        EditorGUILayout.EndHorizontal();
+        //水平分组----End
+
+
+        //垂直分组----Bengin
+        Rect rect2 = EditorGUILayout.BeginVertical();
+
+        EditorGUILayout.LabelField("5");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("6");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("7");
+        EditorGUILayout.TextField("sdk");
+        EditorGUILayout.LabelField("8");
+        EditorGUILayout.TextField("sdk");
+
+        EditorGUILayout.EndVertical();
+        //垂直分组----End
+
+
+        //滚动分组-----End
+        EditorGUILayout.EndScrollView();
+
+    }
+}
+复制代码
+ 
+
+-----------------------------其他字段-----------------
+1）首先在Editor文件夹下新建OtherWindow.cs脚本文件,脚本内容为：
+
+复制代码
+using UnityEngine;
+using System.Collections;
+using UnityEditor;
+
+public class OtherFiledWindow : EditorWindow 
+{
+    [MenuItem("菜单/其他字段")]
+    public static void showWindow()
+    {
+        EditorWindow.GetWindow<OtherFiledWindow>().Show();
+    }
+
+    public AnimationCurve mAC = new AnimationCurve();
+
+
+    public bool mSelect;
+
+    public Object mObj;
+
+    public void OnGUI()
+    {
+        //动画字段
+        this.mAC = EditorGUILayout.CurveField("动画片段",this.mAC);
+
+        //获得选择的物体
+        this.mObj = EditorGUILayout.ObjectField(this.mObj, typeof (Transform));
+
+        //将选择的物体放在面板上
+        this.mSelect = EditorGUILayout.InspectorTitlebar(this.mSelect,this.mObj);
+    }
+}

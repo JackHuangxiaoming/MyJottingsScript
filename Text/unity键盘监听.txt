@@ -1,0 +1,37 @@
+using UnityEngine;
+using System.Collections;
+
+public class mov1 : MonoBehaviour
+{
+    public float speed = 0.1f;
+    // Use this for initialization
+    private void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    private void Update()
+    {
+        {   //键盘键位的监听 方式  当我们按下A的时候
+            if (Input.GetKey(KeyCode.A))
+            {
+                this.transform.Translate(Vector3.left * speed);
+            } //键盘键位的监听 方式  当我们按下A的时候
+            else if (Input.GetKey(KeyCode.D))
+            {
+                this.transform.Translate(Vector3.right * speed);
+            }
+            //键盘键位的监听 方式  当我们按下A的时候
+            else if (Input.GetKey(KeyCode.W))
+            {
+                this.transform.Translate(Vector3.up * speed);
+            }
+            //键盘键位的监听 方式  当我们按下A的时候
+            else if (Input.GetKey(KeyCode.S))
+            {
+                this.transform.Translate(Vector3.down * speed);
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+httpwww.xitongzhijia.netzt78039.html
+
+
+ if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            if (Camera.main.fieldOfView <= 80)
+                Camera.main.fieldOfView += 2;
+            if (Camera.main.orthographicSize <= 20)
+                Camera.main.orthographicSize += 0.5F;
+        }
+        //Zoom in
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            if (Camera.main.fieldOfView > 10)
+                Camera.main.fieldOfView -= 2;
+            if (Camera.main.orthographicSize >= 1)
+                Camera.main.orthographicSize -= 0.5F;
+        }
+    }
+using UnityEngine;using System.Collections;  
+ public class camera : MonoBehaviour {  
+ public float minFov = 15f;    
+public float maxFov = 90f;  
+  public float sensitivity = 10f;      
+ void Update()   
+ {      float fov = Camera.main.fieldOfView;     
+ fov += -Input.GetAxis("Mouse ScrollWheel") * sensitivity;    
+  fov = Mathf.Clamp(fov, minFov, maxFov);     
+ Camera.main.fieldOfView = fov;    }}

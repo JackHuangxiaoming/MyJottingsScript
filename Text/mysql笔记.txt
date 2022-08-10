@@ -1,0 +1,57 @@
+limit 限制长度
+order by id desc / asc     按什么排序 desc 反排序
+* 乘
+/ 除 答案浮点数
+div 除 答案是整数
+% mod 余 取余
++ 加
+- 减
+
+
+字符串操作
+
+select concat('你好','谢谢'); 字符串组合 concat
+
+left('sdf',2) 取前面的几位?
+length('sdfsf') 字符串长度
+reverse('ABCD') 翻转字符串
+replace('asfasfsfsf','asf','111') 字符串替换 第二个参数目标 第三个参数 是替换为
+date_format('时间','%y%m%d') 时间格式化 按百分号来显示
+=====================
+基础操作
+select distinct id,age,naem, form table where id = 1 or id in('2','3','5') or id like '1%,2+' or age between 18 and 60 group by id order by age limit 5
+
+=====================
+count() avg() first() last() max()
+min() sum() mid() len() round()
+now() format()
+=====================
+concat
+group_concat
+concat_sw(",",id)
+=====================
+left/right/inner join //交集
+union //取反 集
+=====================
+
+distinct 去掉重复的
+
+select distinct  first_name from actor order by first_name limit 20;
+
+where 条件
+	1.数字 > < = <= >= <>
+	2.字符串 = '' < = >= <= != null not null
+
+	逻辑操作
+	and or not
+	and 优先级 高于 or
+
+	范围判断
+	in  (not in) 
+	select * from category where category_id in('1','2','3'); 满足 1,2,3 都可以
+	between (not between) 
+	select * from category where category_id between 1 and 9; 范围查询
+	like (not like) % _   %全部 _一个
+	select * from category where name like 'A%'; 模糊搜索 A+~~~~ 
+
+

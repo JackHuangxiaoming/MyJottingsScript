@@ -1,0 +1,19 @@
+AssetDatabase
+	LoadAssetAtPath
+	AssetDatabase.DeleteAsset、
+	AssetDatabase.Refresh()
+PrefabUtility
+	InstantiatePrefab() //预制件加载(和Object.Instantiate 不一样)
+	CreatePrefab
+	ReplacePrefab
+	GetCorrespondingObjectFromSource
+Object.DestroyImmediate//编辑器模式 下可以卸载
+
+EditorUtility
+	UnloadUnusedAssetsImmediate()//卸载编辑器下无用资源
+EditorSceneManager
+	SaveScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene());//保存Scene
+Unity
+[MenuItem("Tools/添加组件")]
+
+Handles

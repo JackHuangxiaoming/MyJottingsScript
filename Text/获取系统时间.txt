@@ -1,0 +1,112 @@
+C# 获取系统时间及时间格式 
+
+－－DateTime 数字型 
+System.DateTime currentTime=new System.DateTime(); 
+取当前年月日时分秒????? currentTime=System.DateTime.Now; 
+取当前年???? int 年=currentTime.Year; 
+取当前月???? int 月=currentTime.Month; 
+取当前日???? int 日=currentTime.Day; 
+取当前时???? int 时=currentTime.Hour; 
+取当前分???? int 分=currentTime.Minute; 
+取当前秒???? int 秒=currentTime.Second; 
+取当前毫秒??? int 毫秒=currentTime.Millisecond; （变量可用中文）
+
+取中文日期显示——年月日时分??? string strY=currentTime.ToString("f"); //不显示秒
+
+取中文日期显示_年月?????? string strYM=currentTime.ToString("y");
+
+取中文日期显示_月日???? string strMD=currentTime.ToString("m");
+
+取当前年月日，格式为：2003-9-23????? string strYMD=currentTime.ToString("d");
+
+取当前时分，格式为：14：24????? string strT=currentTime.ToString("t");
+
+DateTime.Now.ToString();//获取当前系统时间 完整的日期和时间
+DateTime.Now.ToLongDateString();//只显示日期 xxxx年xx月xx日 ，一个是长日期
+DateTime.Now.ToShortDateString();//只显示日期 xxxx-xx-xx 一个是短日期
+
+//今天??????? DateTime.Now.Date.ToShortDateString();
+//昨天 的?????? DateTime.Now.AddDays(-1).ToShortDateString();
+//明天 的?????? DateTime.Now.AddDays(1).ToShortDateString();
+
+
+//本周(注意这里的每一周是从周日始至周六止）
+DateTime.Now.AddDays(Convert.ToDouble((0 - Convert.ToInt16(DateTime.Now.DayOfWeek)))).ToShortDateString();
+DateTime.Now.AddDays(Convert.ToDouble((6 - Convert.ToInt16(DateTime.Now.DayOfWeek)))).ToShortDateString();
+
+//上周，上周就是本周再减去7天
+
+DateTime.Now.AddDays(Convert.ToDouble((0 - Convert.ToInt16(DateTime.Now.DayOfWeek))) - 7).ToShortDateString();
+DateTime.Now.AddDays(Convert.ToDouble((6 - Convert.ToInt16(DateTime.Now.DayOfWeek))) - 7).ToShortDateString();
+
+//下周??? 本周再加上7天
+
+DateTime.Now.AddDays(Convert.ToDouble((0 - Convert.ToInt16(DateTime.Now.DayOfWeek))) + 7).ToShortDateString();
+?? DateTime.Now.AddDays(Convert.ToDouble((6 - Convert.ToInt16(DateTime.Now.DayOfWeek))) + 7).ToShortDateString();
+
+//本月??? 本月的第一天是1号，最后一天就是下个月一号再减一天。
+
+DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + "1"; //第一天
+DateTime.Parse(DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + "1").AddMonths(1).AddDays(-1).ToShortDateString();//最后一天
+
+另一种方法：
+
+DateTime now = DateTime.Now; 
+DateTime d1 = new DateTime(now.Year, now.Month, 1); //本月第一天
+
+DateTime d2 = d1.AddMonths(1).AddDays(-1); //本月最后一天
+
+PS：
+
+
+DateTime.Now.DayOfWeek.ToString();//英文星期显示，Wednesday
+
+（int）DateTime.Now.DayOfWeek???? 数字，若是周三，结果对应为3
+
+DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn")); //中文星期显示
+DateTime.Now.ToString("dddd");//中文星期显示
+
+DateTime.Now.ToString("dddd,MMMM,dd ,yyyy", new System.Globalization.DateTimeFormatInfo())；//显示日期格式Friday,July, 01,2009
+
+DateTime.Now.ToString("dddd,dd MMMM,yyyy") //输出?? 星期三,30 一月,2008
+
+出处：http://msdn.microsoft.com/zh-cn/vstudio/bb762911(VS.95).aspx，如何：从特定日期中提取星期几
+
+datetime类型在tostring()format的格式设置
+
+参数format格式详细用法 
+　格式字符 关联属性/说明 
+　d ShortDatePattern 
+　D LongDatePattern 
+　f 完整日期和时间（长日期和短时间） 
+　F FullDateTimePattern（长日期和长时间） 
+　g 常规（短日期和短时间） 
+　G 常规（短日期和长时间） 
+　m、M MonthDayPattern 
+　r、R RFC1123Pattern 
+　s 使用当地时间的 SortableDateTimePattern（基于 ISO 8601） 
+　t ShortTimePattern 
+　T LongTimePattern 
+　u UniversalSortableDateTimePattern 用于显示通用时间的格式 
+　U 使用通用时间的完整日期和时间（长日期和长时间） 
+　y、Y YearMonthPattern 
+
+下表列出了可被合并以构造自定义模式的模式。这些模式是区分大小写的
+
+?? d 月中的某一天。一位数的日期没有前导零。 
+　dd 月中的某一天。一位数的日期有一个前导零。 
+　ddd 周中某天的缩写名称，在 AbbreviatedDayNames 中定义。 
+　dddd 周中某天的完整名称，在 DayNames 中定义。 
+　M 月份数字。一位数的月份没有前导零。 
+　MM 月份数字。一位数的月份有一个前导零。 
+　MMM 月份的缩写名称，在 AbbreviatedMonthNames 中定义。 
+　MMMM 月份的完整名称，在 MonthNames 中定义。 
+　y 不包含纪元的年份。如果不包含纪元的年份小于 10，则显示不具有前导零的年份。 
+　yy 不包含纪元的年份。如果不包含纪元的年份小于 10，则显示具有前导零的年份。 
+　yyyy 包括纪元的四位数的年份。 
+　gg 时期或纪元。如果要设置格式的日期不具有关联的时期或纪元字符串，则忽略该模式。
+
+?? h 12 小时制的小时。一位数的小时数没有前导零。 
+　hh 12 小时制的小时。一位数的小时数有前导零。 
+　H 24 小时制的小时。一位数的小时数没有前导零。 
+　HH 24 小时制的小时。一位数的小时数有前导零。

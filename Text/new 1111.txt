@@ -1,0 +1,29 @@
+NullReferenceException: Object reference not set to an instance of an object
+ILRuntime.Runtime.Intepreter.ILTypeInstance..ctor (ILRuntime.CLR.TypeSystem.ILType type, System.Boolean initializeCLRInstance) (at Assets/Plugins/ILRuntime/Runtime/Intepreter/ILTypeInstance.cs:163)
+(wrapper dynamic-method) System.Object.lambda_method(System.Runtime.CompilerServices.Closure,object[])
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObjectUsingCreatorWithParameters (Newtonsoft.Json.JsonReader reader, Newtonsoft.Json.Serialization.JsonObjectContract contract, Newtonsoft.Json.Serialization.JsonProperty containerProperty, Newtonsoft.Json.Serialization.ObjectConstructor`1[T] creator, System.String id) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateNewObject (Newtonsoft.Json.JsonReader reader, Newtonsoft.Json.Serialization.JsonObjectContract objectContract, Newtonsoft.Json.Serialization.JsonProperty containerMember, Newtonsoft.Json.Serialization.JsonProperty containerProperty, System.String id, System.Boolean& createdFromNonDefaultCreator) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateObject (Newtonsoft.Json.JsonReader reader, System.Type objectType, Newtonsoft.Json.Serialization.JsonContract contract, Newtonsoft.Json.Serialization.JsonProperty member, Newtonsoft.Json.Serialization.JsonContainerContract containerContract, Newtonsoft.Json.Serialization.JsonProperty containerMember, System.Object existingValue) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader.CreateValueInternal (Newtonsoft.Json.JsonReader reader, System.Type objectType, Newtonsoft.Json.Serialization.JsonContract contract, Newtonsoft.Json.Serialization.JsonProperty member, Newtonsoft.Json.Serialization.JsonContainerContract containerContract, Newtonsoft.Json.Serialization.JsonProperty containerMember, System.Object existingValue) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType, System.Boolean checkAdditionalContent) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.JsonSerializer.DeserializeInternal (Newtonsoft.Json.JsonReader reader, System.Type objectType) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.JsonSerializer.Deserialize (Newtonsoft.Json.JsonReader reader, System.Type objectType) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.JsonConvert.DeserializeObject (System.String value, System.Type type, Newtonsoft.Json.JsonSerializerSettings settings) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.JsonConvert.DeserializeObject[T] (System.String value, Newtonsoft.Json.JsonSerializerSettings settings) (at <2073514815234917a5e8f91b0b239405>:0)
+Newtonsoft.Json.JsonConvert.DeserializeObject[T] (System.String value) (at <2073514815234917a5e8f91b0b239405>:0)
+System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) (at <695d1cc93cca45069c528c15c9fdd749>:0)
+Rethrow as TargetInvocationException: Exception has been thrown by the target of an invocation.
+System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) (at <695d1cc93cca45069c528c15c9fdd749>:0)
+System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) (at <695d1cc93cca45069c528c15c9fdd749>:0)
+ILRuntime.CLR.Method.CLRMethod.Invoke (ILRuntime.Runtime.Intepreter.ILIntepreter intepreter, ILRuntime.Runtime.Stack.StackObject* esp, System.Collections.Generic.IList`1[T] mStack, System.Boolean isNewObj) (at Assets/Plugins/ILRuntime/CLR/Method/CLRMethod.cs:316)
+ILRuntime.Runtime.Intepreter.ILIntepreter.Execute (ILRuntime.CLR.Method.ILMethod method, ILRuntime.Runtime.Stack.StackObject* esp, System.Boolean& unhandledException) (at Assets/Plugins/ILRuntime/Runtime/Intepreter/ILIntepreter.cs:1818)
+Rethrow as ILRuntimeException: Exception has been thrown by the target of an invocation.
+IL_0006: call !!0 Newtonsoft.Json.JsonConvert::DeserializeObject<PlatformLobbyCode.Main/Fight_FrameOpretion_TakeDamage>(System.String)
+PlatformLobbyCode.Main.Start() D:/Work/Project/JZSH_TrunkTrunk/PlatformLobbyCode/Base/Main.cs:Line 31
+UnityEngine.MonoBehaviour:StartCoroutine(IEnumerator)
+StartScene:OnPhpServer(String) (at Assets/Scripts/StartScene.cs:231)
+<PostHttpRequestIEnumerator>d__1:MoveNext() (at Assets/Scripts/Base/Utils.cs:97)
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+playerUUID,18ed096861961f6805f247984df352ce
+

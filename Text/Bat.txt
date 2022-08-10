@@ -1,0 +1,170 @@
+run.bat---打开百度
+
+path=%path%; C:\Program Files (x86)\Internet Explorer\iexplore.exe
+start iexplore http://www.baidu.com
+   将c盘下所有文件名输出到a.txt中，如果没有a文件，则在bat同一目录下创建一个
+
+dir c:\*.* >a.txt  
+执行另一个批处理文件
+
+call c:\code\run.bat
+echo回显
+
+bat脚本：
+@echo off      表示在此语句后所有运行的命令都不显示命令行本身 
+cd code          进入code文件夹
+echo enter code directory     显示enter code directory
+call run.bat
+增加入参
+
+@echo off
+ type %1 
+ type %2 
+
+cmd为 run.bat a.txt b.txt
+控制台会显示出a和b的文件内容
+ for循环的使用
+
+bat脚本
+@echo off
+for %%t in (*.bat *.txt) do type %%t
+
+注意1，打印的是bat和txt文件的内容
+注意2，此bat放在需打印文件内容的文件一个目录层级下
+bat脚本
+@echo off
+FOR /L %%i in (1,2,20) DO echo %%i
+if/else判断语句的使用
+
+复制代码
+bat脚本
+@echo off
+if {%1}=={%2} (
+echo eq l.
+) else (
+echo not eq l.
+)
+
+cmd输入run.bat 1 2
+结果为not eq 1
+在一个批处理文件内最多可以使用10个替换参数(%0到%9)
+
+@echo off
+if exist a.txt (
+    echo This is a.txt
+    type a.txt
+)else (
+    echo a.txt missing.
+)
+判断当前目录下是否有a.txt
+复制代码
+删除文件
+
+@echo off
+del a.txt
+
+注意：指定路径会删除该路径下所有文件
+移动、拷贝文件、文件夹
+
+复制代码
+bat脚本
+@echo off
+move c:\a.txt c:\code\a.txt 
+
+copy c:\code\a.txt c:\a.txt 
+
+rd c:\code\abc\abc   REM 删除非空文件夹
+复制代码
+ 
+
+GOTO语句
+
+@ECHO OFF
+GOTO SECOND
+:FIRST
+echo I AM FIRST
+:SECOND
+echo I AM SECOND
+choice/errorlevel的用法
+
+复制代码
+@echo off 
+choice /C 123 /M "RUN1,RUN2,RUN3"
+if errorlevel 3 goto RUN3
+if errorlevel 2 goto RUN2 
+if errorlevel 1 goto RUN1 
+
+:RUN1  
+c:\code\RUN1 
+goto RUN3 
+
+:RUN2
+c:\code\RUN2
+goto RUN3 
+
+:RUN3
+echo good bye 
+
+
+执行bat脚本：c:\code\RUN1
+复制代码
+set
+
+复制代码
+@echo off
+set a=aa1bb1aa2bb2
+echo %a%
+
+set b=12
+echo %b%
+
+set /a c=39/10           
+echo %c%
+复制代码
+复制代码
+@echo off
+set p=aaa
+if %p%==aaa (
+      echo %p%
+      set p=bbb
+      echo %p%
+      )
+输出aaa aaa
+      
+@echo off
+set p=aaa
+if %p%==aaa (
+      echo %p%
+      set /p p=bbb
+      echo %p%
+      )
+输出aaa bbb
+复制代码
+echo %CD%                    #代表当前目录的字符串
+echo %DATE%                  #当前日期
+echo %TIME%                  #当前时间
+从FTP下载文件
+
+复制代码
+@echo open 10.86.56.6 >ftp.txt      rem ftp server ip
+
+@echo user mos>>ftp.txt             rem 用户名
+
+@echo mos>>ftp.txt                  rem 密码
+
+@echo cd test>>ftp.txt              rem 文件路径
+
+@echo get mw-license-switch-conffile.xml>>ftp.txt rem 文件名
+
+@echo bye>>ftp.txt
+
+ 
+
+ftp -i -n -s:ftp.txt                rem 文件存放在脚本所在路径下
+
+复制代码
+  切换盘符
+
+set current_dir=C:\Program Files\HaoZip    
+pushd %current_dir% 
+echo %cd%
