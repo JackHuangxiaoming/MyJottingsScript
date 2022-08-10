@@ -1,0 +1,30 @@
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\bin\Debug\02Do you Love Me.exe.config
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\bin\Debug\02Do you Love Me.exe
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\bin\Debug\02Do you Love Me.pdb
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\obj\Debug\02Do you Love Me.csprojResolveAssemblyReference.cache
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\obj\Debug\_02Do_you_Love_Me.Form1.resources
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\obj\Debug\_02Do_you_Love_Me.Properties.Resources.resources
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\obj\Debug\02Do you Love Me.csproj.GenerateResource.Cache
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\obj\Debug\02Do you Love Me.exe
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\02Do you Love Me\obj\Debug\02Do you Love Me.pdb
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\bin\Debug\02Do you Love Me.exe.config
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\obj\Debug\02Do you Love Me.exe
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\obj\Debug\02Do you Love Me.pdb
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\bin\Debug\02Do you Love Me.exe
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\bin\Debug\02Do you Love Me.pdb
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\obj\Debug\02Do you Love Me.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\obj\Debug\_02Do_you_Love_Me.Form1.resources
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\obj\Debug\_02Do_you_Love_Me.Properties.Resources.resources
+C:\Users\Administrator\Desktop\最后1周\C#2017第一周\Day01\Winform入门\02Do you Love Me\obj\Debug\02Do you Love Me.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\鼠标移入事件\bin\Debug\02Do you Love Me.exe.config
+C:\Users\Administrator\Desktop\鼠标移入事件\obj\Debug\02Do you Love Me.exe
+C:\Users\Administrator\Desktop\鼠标移入事件\obj\Debug\02Do you Love Me.pdb
+C:\Users\Administrator\Desktop\鼠标移入事件\bin\Debug\02Do you Love Me.exe
+C:\Users\Administrator\Desktop\鼠标移入事件\bin\Debug\02Do you Love Me.pdb
+C:\Users\Administrator\Desktop\鼠标移入事件\obj\Debug\02Do you Love Me.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\鼠标移入事件\obj\Debug\_02Do_you_Love_Me.Form1.resources
+C:\Users\Administrator\Desktop\鼠标移入事件\obj\Debug\_02Do_you_Love_Me.Properties.Resources.resources
+C:\Users\Administrator\Desktop\鼠标移入事件\obj\Debug\02Do you Love Me.csproj.GenerateResource.Cache
+H:\Winform入门\02鼠标移入事件\bin\Debug\02Do you Love Me.exe.config
+H:\Winform入门\02鼠标移入事件\obj\Debug\02Do you Love Me.exe
+H:\Winform入门\02鼠标移入事件\obj\Debug\02Do you Love Me.pdb

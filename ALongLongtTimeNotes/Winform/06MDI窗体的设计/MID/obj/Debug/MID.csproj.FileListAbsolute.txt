@@ -1,0 +1,11 @@
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\bin\Debug\MID.exe.config
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\bin\Debug\MID.exe
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\bin\Debug\MID.pdb
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\obj\Debug\MID.Form1.resources
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\obj\Debug\MID.Properties.Resources.resources
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\obj\Debug\MID.csproj.GenerateResource.Cache
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\obj\Debug\MID.exe
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MID\obj\Debug\MID.pdb
+E:\Winform入门\06MDI窗体的设计\MID\bin\Debug\MID.exe.config
+E:\Winform入门\06MDI窗体的设计\MID\obj\Debug\MID.exe
+E:\Winform入门\06MDI窗体的设计\MID\obj\Debug\MID.pdb

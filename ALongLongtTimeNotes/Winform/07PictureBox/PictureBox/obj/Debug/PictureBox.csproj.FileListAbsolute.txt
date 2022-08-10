@@ -1,0 +1,12 @@
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\bin\Debug\PictureBox.exe.config
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\bin\Debug\PictureBox.exe
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\bin\Debug\PictureBox.pdb
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\obj\Debug\PictureBox.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\obj\Debug\PictureBox.Form1.resources
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\obj\Debug\PictureBox.Properties.Resources.resources
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\obj\Debug\PictureBox.csproj.GenerateResource.Cache
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\obj\Debug\PictureBox.exe
+c:\users\admin\documents\visual studio 2015\Projects\PictureBox\PictureBox\obj\Debug\PictureBox.pdb
+E:\Winform入门\07PictureBox\PictureBox\bin\Debug\PictureBox.exe.config
+E:\Winform入门\07PictureBox\PictureBox\obj\Debug\PictureBox.exe
+E:\Winform入门\07PictureBox\PictureBox\obj\Debug\PictureBox.pdb

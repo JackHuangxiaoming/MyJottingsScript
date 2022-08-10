@@ -1,0 +1,8 @@
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\bin\Debug\11PictureBox和Timer的练习.exe.config
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\bin\Debug\11PictureBox和Timer的练习.exe
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\bin\Debug\11PictureBox和Timer的练习.pdb
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\obj\Debug\_11PictureBox和Timer的练习.Form1.resources
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\obj\Debug\_11PictureBox和Timer的练习.Properties.Resources.resources
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\obj\Debug\11PictureBox和Timer的练习.csproj.GenerateResource.Cache
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\obj\Debug\11PictureBox和Timer的练习.exe
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\11PictureBox和Timer的练习\obj\Debug\11PictureBox和Timer的练习.pdb

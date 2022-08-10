@@ -1,0 +1,12 @@
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\bin\Debug\06单选和多选.exe.config
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\bin\Debug\06单选和多选.exe
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\bin\Debug\06单选和多选.pdb
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\obj\Debug\06单选和多选.csprojResolveAssemblyReference.cache
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\obj\Debug\_06单选和多选.Form1.resources
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\obj\Debug\_06单选和多选.Properties.Resources.resources
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\obj\Debug\06单选和多选.csproj.GenerateResource.Cache
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\obj\Debug\06单选和多选.exe
+C:\Users\SpringRain\Desktop\WindowsFormsApplication1\06单选和多选\obj\Debug\06单选和多选.pdb
+H:\Winform入门\04单选和多选\bin\Debug\06单选和多选.exe.config
+H:\Winform入门\04单选和多选\obj\Debug\06单选和多选.exe
+H:\Winform入门\04单选和多选\obj\Debug\06单选和多选.pdb

@@ -1,0 +1,10 @@
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\bin\Debug\MDI窗体的设计.exe.config
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\bin\Debug\MDI窗体的设计.exe
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\bin\Debug\MDI窗体的设计.pdb
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.csprojResolveAssemblyReference.cache
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.Form4.resources
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.Properties.Resources.resources
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.csproj.GenerateResource.Cache
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.exe
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.pdb
+c:\users\admin\documents\visual studio 2015\Projects\MDI窗体的设计\MDI窗体的设计\obj\Debug\MDI窗体的设计.Form1.resources
