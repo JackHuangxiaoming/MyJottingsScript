@@ -1,0 +1,192 @@
+﻿1.listBox 文件框
+显示用户可以选择项的列表
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace _06ListBox控件
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            listBox1.Items.Add(1);
+            listBox1.Items.Add(1);
+            listBox1.Items.Add(1);
+            listBox1.Items.Add(1);
+            listBox1.Items.Add(1);
+        }
+    }
+}
+在列表里去添加我们的内容选项 类似我们的COMBOM box的使用方式
+
+程序加载添加5个数字 我们点击按钮 切换图片 listBox+picbox的差异
+
+读取文件架的东西 我们用文件架的类去获得所有的 
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
+namespace _07实现点击更换照片
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+
+        //用来存储图片文件的全路径
+        List<string> list = new List<string>();
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string[] path = Directory.GetFiles(@"C:\Users\SpringRain\Desktop\Picture", "*.jpg");
+            for (int i = 0; i < path.Length; i++)
+            {
+                string fileName = Path.GetFileName(path[i]);
+                listBox1.Items.Add(fileName);
+                //将图片的全路径添加到List泛型集合中
+                list.Add(path[i]);
+                //listBox1.Items.Add(path[i]);
+            }
+        }
+
+      
+        /// <summary>
+        /// 双击播放图片
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile(list[listBox1.SelectedIndex]);
+        }
+    }
+}
+
+
+2.对话框的使用方式
+
+
+
+
+
+音乐播放器的项目开发：
+1.创建项目 选择项目中使用MediaPlay  创建音乐播放器的控件 //wav 创建自己的音乐控件 找1个Mp3
+2.观察我们的音乐播放器的使用情况
+3.注意内核的使用 内核是啥？
+4.播放器的起名 起名后使用Myplayer 
+5.我们使用URl的方式选择浏览的文件的地址  什么文件都可以播放
+C:\Users\admin\Desktop\C#\my 你写个我们的类型和属性方式
+6.增加我们的几个button
+ private void button1_Click(object sender, EventArgs e)
+        {
+            player.Ctlcontrols.play();
+        }
+7.取消播放器的自动播放 程序加载的时候取消播放器的自动播放
+只要存了URl就执行了预先加载的方式 没歌就不会自己播放了
+只要只要URl就没法去执行播放歌曲 所以调整位置
+ musicPlayer.settings.autoStart = false; 自动播放时方式 去设置1下
+ // musicPlayer.URL = @"XXXXXXXXX";
+8.使用1键两控的方式去执行我们的操作
+      bool b = true;
+        private void btnPlayorPause_Click(object sender, EventArgs e)
+        {
+            if (btnPlayorPause.Text == "播放")
+            {
+                if (b)
+                {
+                    //获得选中的歌曲  让音乐从头播放
+                    musicPlayer.URL = listPath[listBox1.SelectedIndex];
+                }
+                musicPlayer.Ctlcontrols.play();
+                btnPlayorPause.Text = "暂停";
+            }
+            else if (btnPlayorPause.Text == "暂停")
+            {
+                musicPlayer.Ctlcontrols.pause();
+                btnPlayorPause.Text = "播放";
+                b = false;
+            }
+        }
+我们单独做1个停止的按钮
+		
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            musicPlayer.Ctlcontrols.stop();
+        }
+9.制作我们的选歌的按钮的方式 选歌需要我们的去通过对话框打开我们的文件夹
+
+private void button4_Click(object sender, EventArgs e)
+        {
+		//新的api需要我们的学习的类  OpenFileDialog 选择我们的文件架
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = @"F:\老赵生活\music";
+            ofd.Filter = "音乐文件|*.wav|MP3文件|*.mp3|所有文件|*.*";
+            ofd.Title = "请选择音乐文件哟亲o(^▽^)o";
+            ofd.Multiselect = true;
+            ofd.ShowDialog();
+
+            //获得在文本框中选择文件的全路径
+            string[] path = ofd.FileNames;
+            for (int i = 0; i < path.Length; i++)
+            {
+                //将音乐文件的全路径存储到泛型集合中
+                listPath.Add(path[i]);
+                //将音乐文件的文件名存储到ListBox中
+                listBox1.Items.Add(Path.GetFileName(path[i]));
+            }
+        }
+	选择好我们的对话框就选到我们的listbox里去 
+	List<string> listPath = new List<string>();
+	通过Path类去放到我们文件里去  防止出现异常的方式
+	
+	 /// <summary>
+        /// 双击播放对应的音乐
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listBox1.Items.Count == 0)
+            {
+                MessageBox.Show("请首先选择音乐文件");
+                return;
+            }
+            try
+            {
+                musicPlayer.URL = listPath[listBox1.SelectedIndex];
+                musicPlayer.Ctlcontrols.play();
+                btnPlayorPause.Text = "暂停";
+            
+
+            }
+            catch { }
+        }
+	
+	记得空白区区域存在bug
+	
+	
+	
+	
+		
+		

@@ -1,0 +1,96 @@
+关于函数的认知 
+
+1.权限+修饰+返回值类型 函数名（参数列表）
+
+1个作为 
+
+int数组
+
+2.传入XX个数组，求返回数组中的 1最大值+（ 2最小值3 平均值4 进行升序排序（数组）5[ ]）
+
+如何把函数的返回值设定多个结果？ 
+
+控制台打印
+
+返回1个容器 
+
+
+CNY
+					out
+out：关键字 返回多余参数  100买1带猫粮 +  猫罐头
+
+登录案例 
+
+返回值类型 bool
+
+bool,（登录失败，登录成功） 
+
+return bool  参数需要做变化 
+
+ public static void Test(int[] nums, out int max, out int min, out int sum, out int avg, out bool b, out string s, out double d)
+        {
+            //out参数要求在方法的内部必须为其赋值
+            max = nums[0];
+            min = nums[0];
+            sum = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] > max)
+                {
+                    max = nums[i];
+                }
+                if (nums[i] < min)
+                {
+                    min = nums[i];
+                }
+                sum += nums[i];
+            }
+            avg = sum / nums.Length;
+
+
+            b = true;
+            s = "123";
+            d = 3.13;
+        }
+
+
+
+
+
+==================结构体
+
+
+  //学员管理系统
+            //姓名、性别、年龄、年级  //5000  20000
+            //string zsName = "张三";
+            //int zsAge = 21;
+            //char zsGender = '男';
+            //int zsGrade = 3;
+
+    public struct Person
+    {
+        public string _name;//字段
+        public int _age;
+      
+
+结构体的关键字就是stuck  基本数据类型 他不在是原始封装的数据类型 
+
+
+
+const常量关键字 
+
+struct 结构体关键字 
+
+定义个1个结构体 Person 姓名 性别 年龄 学号 和家庭地址 
+
+我们给这个结构体创建变量类型 赋值并且打印控制台
+
+
+
+
+
+
+
+
+
+

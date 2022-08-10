@@ -1,0 +1,23 @@
+71005 k1项目
+
+1.素材准备，准备1个游戏开发的完整案例 图片 音频 还有的你的项目构思
+
+2.纯winfrom 或者U2D K1 优秀学员的评选 云世界首页展览 
+
+3.回去收集素材，RPG,AVG,塔防类，动作过关，三消，运动，卡牌
+
+4.实现SlidingMenu的布局设计 
+
+5.Fragment  多页面拖动连载的 UI 
+
+6.需要学习我们的Fragment类 和Fragmentmanger
+
+7.自定义1个类 继承自Fragment    onCreateView重写的 生命周期方法 类似我们的  Activity中的 Oncreat方法
+
+使用Fragment 控件必须保证我们的 最低版本是11
+
+//[4]获取fragment的管理者 
+				FragmentManager fragmentManager = getFragmentManager();
+				//[5]开启事物 
+				FragmentTransaction transaction = fragmentManager.beginTransaction();
+				

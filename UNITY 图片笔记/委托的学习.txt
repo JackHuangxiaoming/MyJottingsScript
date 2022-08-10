@@ -1,0 +1,135 @@
+委托的学习
+
+1.为什那么要学习委托
+
+2.匿名函数
+
+3.使用委托求最大值 
+
+4.字符的每个元素都转换为大写/小写/都+【】
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace 委托的使用
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] strs = { "a", "d", "e", "m" };
+
+          
+        }
+        public static void Touper(string[] args) {
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i] = args[i].ToUpper();
+            }
+        }
+        public static void Tolower(string[] args)
+        {
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i] = args[i].ToLower();
+            }
+        }
+
+        public static void Plus(string[] args)
+        {
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i] = "\" " + args[i] + "\" ";
+            }
+        }
+    }
+}
+
+
+处理一件事 所以使用1个委托的方式传入方法来执行操作
+
+
+
+委托的类型使用 
+
+我们国际沟通的方式使用自己的方式 
+ 
+public delegate void TalkAbout(string name);
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+namespace _8_委托概念
+{
+    //声明一个委托指向一个函数
+    public delegate void DelSayHi(string name);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //DelSayHi del = SayHiEnglish;//new DelSayHi(SayHiEnglish);
+            //del("张三");
+            //Console.ReadKey();
+
+            //Test("张三", SayHiChinese);
+            //Test("李四", SayHiEnglish);
+            //Console.ReadKey();
+        }
+
+        public static void Test(string name,DelSayHi del) 
+        { 
+            //调用
+            del(name);
+        }
+
+        public static void SayHiChinese(string name)
+        {
+            Console.WriteLine("吃了么？" + name);
+        }
+        public static void SayHiEnglish(string name)
+        {
+            Console.WriteLine("Nice to meet you" + name);
+        }
+    }
+}
+
+
+委托的进阶：匿名函数
+
+1.委托怎那么使用？   
+
+    ProStr(names, delegate(string name)
+            {
+                return "\"" + name + "\"";
+            });
+            for (int i = 0; i < names.Length; i++)
+            {
+                Console.WriteLine(names[i]);
+            }
+            Console.ReadKey();
+        }
+
+
+        public static void ProStr(string[] name, DelProStr del)
+        {
+            for (int i = 0; i < name.Length; i++)
+            {
+                name[i] = del(name[i]);
+            }
+        }
+
+
+
+
+
+
+
+
+

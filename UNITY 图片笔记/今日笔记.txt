@@ -1,0 +1,21 @@
+c#中的数据结构
+
+1.CryEngine No1,Ue4 No2,Freez No3,XM-Design No4,Unity No5
+
+2.Unity 5.4 openVr -SteamVrbuilder  UE4 渲染效果 传统的游戏开发  
+
+服务端开发-j2ee-socrket 
+
+前端开发 bootstarp-vue-Node.js R5
+
+客户都开发 客户端pc 移动端	关，横版过关
+
+6 4.7  5.5 ipad pro mini 
+
+3.SVN 
+
+3.基本数据类型   引用数据类  枚举 结构体 
+
+为啥使用枚举？ 学生管理系统 Gender 男 女 表现了1个事物 几个表达方式
+
+枚举的数据类型内部是 int string

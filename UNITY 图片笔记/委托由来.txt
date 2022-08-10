@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace 委托的使用
+{
+    //学习关键字   delegate 就是委托的关键字  就是 将1种引用 指向函数类型  可以把创造的这个委托的变量进行传递
+    public delegate void Trans(string[] args);// 枚举 委托 索引器 
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            string[] strs = { "a", "d", "e", "m" };
+
+
+            Trans trans = Plus;
+
+            //这个函数由来 
+            ProgressTo(strs, trans);
+
+
+        }
+
+
+
+
+
+
+
+        //委托就是阿姨 我让阿姨帮我们打饭  10块 20 10 拿现金去买 需要得到食物 （方法签名）  自己本身 的函数签名 必须和委托的函数签名完全一致
+        public static void ProgressTo(string[] args, Trans trans)//代表谁？ 今天思想重点 就是这个函数的由来？
+        {
+
+            trans(args);
+        }
+
+
+
+
+
+
+
+
+        public static void Touper(string[] args)
+        {
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i] = args[i].ToUpper();
+            }
+        }
+        public static void Tolower(string[] args)
+        {
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i] = args[i].ToLower();
+            }
+        }
+
+        public static void Plus(string[] args)
+        {
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                args[i] = "\" " + args[i] + "\" ";
+            }
+        }
+    }
+
+
+
+
+
+
+请使用委托来 创造1个方法 这个方法 可以去进行外语交流 1国语 2英语 3日语
+
+
+//从自己做 到请委托来做的 重要思想转变 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+

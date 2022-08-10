@@ -1,0 +1,32 @@
+private void button4_Click(object sender, EventArgs e)
+        {
+		//新的api需要我们的学习的类  OpenFileDialog 选择我们的文件架
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory =ic";
+            ofd.Filter = "音乐文件|*.wav|MP3文件|*.mp3|所有文件|*.*";
+            ofd.Title = "请选择音乐文件哟亲o(^▽^)o";
+            ofd.Multiselect = true;
+            ofd.ShowDialog();
+
+            //获得在文本框中选择文件的全路径
+            string[] path = ofd.FileNames;
+            for (int i = 0; i < path.Length; i++)
+            {
+                //将音乐文件的全路径存储到泛型集合中
+                listPath.Add(path[i]);
+                //将音乐文件的文件名存储到ListBox中
+                listBox1.Items.Add(Path.GetFileName(path[i]));
+            }
+        }
+
+1.类名 OpenFileDialog
+
+2.非静态类 对象调用方法 抽取大工具类
+
+OpenFileDialog ofd = new OpenFileDialog();
+
+  ofd.InitialDirectory=xx(Path操作)
+
+3.所有文件/mp3/mp4
+
+	*.wav   所有文件|*.*

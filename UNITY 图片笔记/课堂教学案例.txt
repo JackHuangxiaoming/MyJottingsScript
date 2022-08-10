@@ -1,0 +1,406 @@
+委托的复习
+
+1.使用委托求数组的最大值 最小值 和平均值 
+
+2.匿名函数的学习
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _9_匿名函数
+{
+    public delegate void DelSayHi(string name);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //SayHi("张三", SayHiChinese);
+            //DelSayHi del = delegate(string name)
+            //{
+            //    Console.WriteLine("你好" + name);
+            //};
+            //del("张三");
+
+
+            //lamda表达式  => goes to
+            DelSayHi del = (string name) => { Console.WriteLine("你好" + name); };
+            del("张三");
+            Console.ReadKey();
+        }
+
+        //public static void SayHi(string name,DelSayHi del)
+        //{
+        //    del(name);
+        //}
+
+        //public static void SayHiChinese(string name)
+        //{
+        //    Console.WriteLine("你好"+name);
+        //}
+        //public static void SayHiEnglish(string name)
+        //{
+        //    Console.WriteLine("Hello"+name);
+        //}
+    }
+}
+
+======================================
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _10求数组的最大值
+{
+    public delegate int DelCompare(object o1, object o2);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            object[] o = {"abc","fdsfdsds","fdsfdsfdsfdsfdsfds","fdsfds"};
+            //object result = GetMax(o, Compare2);
+            //object result = GetMax(o, delegate(object o1, object o2) {
+            //    string s1 = (string)o1;
+            //    string s2 = (string)o2;
+            //    return s1.Length - s2.Length;
+            //});
+
+            object result = GetMax(o, (object o1,object o2) => {
+                string s1 = (string)o1;
+                string s2 = (string)o2;
+                return s1.Length - s2.Length;
+            });
+            Console.WriteLine(result);
+            Console.ReadKey();
+        }
+
+        public static object GetMax(object[] nums, DelCompare del)
+        {
+            object max = nums[0];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                //要传一个比较的方法
+                if (del(max, nums[i]) < 0)
+                {
+                    max = nums[i];
+                }
+            }
+            return max;
+        }
+
+
+        //public static int Compare1(object o1, object o2)
+        //{
+        //    int n1 = (int)o1;
+        //    int n2 = (int)o2;
+        //    return n1 - n2;
+        //}
+
+        //public static int Compare2(object o1, object o2)
+        //{
+        //    string s1 = (string)o1;
+        //    string s2 = (string)o2;
+        //    return s1.Length - s2.Length;
+        //}
+
+        //public static string GetMax(string[] names)
+        //{
+        //    string max = names[0];
+        //    for (int i = 0; i < names.Length; i++)
+        //    {
+        //        if (max.Length < names[i].Length)
+        //        {
+        //            max = names[i];
+        //        }
+        //    }
+        //    return max;
+        //}
+    }
+}
+============================================================ 其他类的学习
+
+
+Io操作的部分 
+
+1.我们如何了解C#中的Io部分  Path类的学习  静态类  
+
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace Path类的用法
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = @"C:\Users\admin\Desktop\120 Unity 2D游戏开发案例 - 2DRoguelike拾荒者";
+            int index = str.LastIndexOf("\\");
+            //记得这里需要我们做转译
+            str = str.Substring(index + 1);
+            Console.WriteLine(str);
+            Path.GetFileName("str"); //快速获得文件路径下的名字
+            Console.WriteLine(Path.GetFileNameWithoutExtension(str));
+            Console.WriteLine(Path.GetExtension(str));
+            Console.WriteLine(Path.GetDirectoryName(str));
+            Console.WriteLine(Path.GetFullPath(str));
+            Console.WriteLine(Path.Combine(@"c:\a\","b.txt"));
+
+        }
+    }
+}
+
+2.File的类的使用 
+
+
+IO空间的使用
+
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _15File类
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            //创建一个文件
+            //File.Create(@"C:\Users\SpringRain\Desktop\new.txt");
+            //Console.WriteLine("创建成功");
+            //Console.ReadKey();
+
+            //删除一个文件
+            //File.Delete(@"C:\Users\SpringRain\Desktop\new.txt");
+            //Console.WriteLine("删除成功");
+            //Console.ReadKey();
+            //1024byte=1kb
+            //1024kb=1M
+            //1024M=1G
+            //1024G=1T
+            //1024T=1PT
+
+            //复制一个文件
+            //File.Copy(@"C:\Users\SpringRain\Desktop\code.txt", @"C:\Users\SpringRain\Desktop\new.txt");
+            //Console.WriteLine("复制成功");
+            //Console.ReadKey();
+
+
+            //剪切
+            File.Move(@"C:\Users\SpringRain\Desktop\code.txt", @"C:\Users\SpringRain\Desktop\newnew.txt");
+            Console.WriteLine("剪切成功");
+            Console.ReadKey();
+
+
+            //Console.WriteLine(sizeof(char));
+            //Console.ReadKey();
+            //Console.WriteLine(sizeof(string));a  "dsfdsfds"
+            //Console.ReadKey();
+        }
+    }
+}
+
+2.File的类的读写操作
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+namespace _16_使用File类操作文件的数据
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //byte[] buffer = File.ReadAllBytes(@"C:\Users\SpringRain\Desktop\1.txt");
+
+
+            //EncodingInfo[] en = Encoding.GetEncodings();
+            //foreach (var item in en)
+            //{
+            //    Console.WriteLine(item.DisplayName);
+            //}
+            //Console.ReadKey();
+            //将字节数组转换成字符串
+            //string s = Encoding.UTF8.GetString(buffer);
+            //Console.WriteLine(s);
+            // Console.WriteLine(buffer.ToString());
+            //编码格式：指的就是你以怎样的形式来存储字符串
+            //a-z 0-9  Ascii  117 u---->汉字--->GB2312 GBK
+            //int n = (int)'u';
+            //char c = (char)188;
+            //Console.WriteLine(c);
+            ////Console.WriteLine(n);
+
+
+            //string s="今天天气好晴朗，处处好风光";
+            ////将字符串转换成字节数组
+            //byte[] buffer=  Encoding.Default.GetBytes(s);
+            ////以字节的形式向计算机中写入文本文件
+            //File.WriteAllBytes(@"C:\Users\SpringRain\Desktop\1.txt", buffer);
+            //Console.WriteLine("写入成功");
+            //Console.ReadKey();
+
+
+            //使用File类来实现一个多媒体文件的复制操作
+
+            //读取
+            byte[] buffer = File.ReadAllBytes(@"C:\Users\SpringRain\Desktop\12333.wmv");
+            Console.ReadKey();
+
+            ////写入
+            //File.WriteAllBytes(@"C:\Users\SpringRain\Desktop\new.wav", buffer);
+            //Console.WriteLine("复制成功");
+            //Console.ReadKey();
+
+
+            //byte[] buffer=new byte[1024*1024*5];
+            //while (true)
+            //{
+            //    File.WriteAllBytes(@"C:\Users\SpringRain\Desktop\123.wmv", buffer);
+            //}
+
+        }
+    }
+}
+
+File类的学习
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+using System.IO;
+namespace _01复习
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+             里氏转换：
+             * 1、子类可以赋值给父类(如果有一个方法需要一个父类作为参数，我们可以传第一个子类对象)
+             * 2、如果父类中装的是子类对象，则可以将这个父类强转为子类对象
+             */
+
+            //Person p = new Student();
+            ////is as
+            //Student ss = p as Student;
+            //ss.StudentSayHello();
+            //Console.ReadKey();
+            //if (p is Student)
+            //{
+            //    ((Student)p).StudentSayHello();
+            //}
+            //else
+            //{
+            //    Console.WriteLine("转换失败");
+            //}
+            //Console.ReadKey();
+
+
+            //ArrayList list = new ArrayList();
+            //Remove RemoveAt  RemoveRange  Clear  Insert  InsertRange
+            //Reverse  Sort
+
+            //Hashtable ht = new Hashtable();
+            //ht.Add(1, "张三");
+            //ht.Add(true, '男');
+            //ht.Add(3.14, 5000m);
+            ////在键值对集合中 键必须是唯一的
+            ////ht.Add(1, "李四");
+            //ht[1] = "李四";
+            ////ht.ContainsKey
+            //foreach (var item in ht.Keys)
+            //{
+            //    Console.WriteLine("{0}------------{1}",item,ht[item]);
+            //}
+            //Console.ReadKey();
+
+            //Path
+
+
+            //File
+            //Create  Delete Copy Move
+
+            //byte[] buffer = File.ReadAllBytes(@"C:\Users\SpringRain\Desktop\抽象类特点.txt");
+            ////将字节数组中的每一个元素都要按照我们指定的编码格式解码成字符串
+            ////UTF-8  GB2312 GBK ASCII  Unicode
+            //string s = Encoding.Default.GetString(buffer);
+
+            //Console.WriteLine(s);
+            //Console.ReadKey();
+
+            //没有这个文件的话 会给你创建一个 有的话 会给你覆盖掉
+            //string str="今天天气好晴朗处处好风光";
+            ////需要将字符串转换成字节数组
+            //byte[] buffer= Encoding.Default.GetBytes(str);
+            //File.WriteAllBytes(@"C:\Users\SpringRain\Desktop\new.txt", buffer);
+            //Console.WriteLine("写入成功");
+            //Console.ReadKey();
+
+
+            //string[] contents = File.ReadAllLines(@"C:\Users\SpringRain\Desktop\抽象类特点.txt", Encoding.Default);
+            //foreach (string item in contents)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.ReadKey();
+
+
+            //string str = File.ReadAllText("抽象类特点.txt", Encoding.Default);
+            //Console.WriteLine(str);
+            //Console.ReadKey();
+
+            //File.WriteAllLines(@"C:\Users\SpringRain\Desktop\new.txt", new string[] { "aoe", "ewu" });
+            //Console.WriteLine("OK");
+            //Console.ReadKey();
+
+
+            //File.WriteAllText(@"C:\Users\SpringRain\Desktop\new.txt", "张三李四王五赵六");
+            //Console.WriteLine("OK");
+            //Console.ReadKey();
+
+            //File.AppendAllText(@"C:\Users\SpringRain\Desktop\new.txt", "看我有木有把你覆盖掉");
+            //Console.WriteLine("OK");
+            //Console.ReadKey();
+
+        }
+    }
+
+
+    public class Person
+    {
+        public void PersonSayHello()
+        {
+            Console.WriteLine("我是老师");
+        }
+    }
+
+    public class Student : Person
+    {
+        public void StudentSayHello()
+        {
+            Console.WriteLine("我是学生");
+        }
+    }
+
+}
+
+
+

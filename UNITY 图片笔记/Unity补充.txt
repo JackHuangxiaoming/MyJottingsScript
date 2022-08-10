@@ -1,0 +1,28 @@
+1.切关 场景切换 按键切换 拖动切换 
+
+api
+
+Appliation.
+
+2.数值保存/迁移C#中所有Io 
+
+吃钻石 lv1 5颗 lv2(现场) Q 
+
+PlayerPrefs map K V键 值对 Haskey   Get/Set的方法   int/float string 
+
+
+!api 抽取1个游戏物体  创建静态资源   
+
+100-0-life
+
+3.面板值和脚本值对应 GetComponet<XXX>().  基本数据类,int float bool enum 
+
+4.Resources.Load("image 15") 不能放入子文件夹
+
+Gameobject 
+
+5.找素材 报主题
+
+K1. 多场景关卡，5个 丰富的视觉动画  使用良好编程习惯  private _ 
+
+截图 写说明 做视频 引导关的介绍 文字的概述产品 
